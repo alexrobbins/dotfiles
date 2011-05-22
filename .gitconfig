@@ -1,0 +1,15 @@
+[user]
+	name = Alex Robbins
+	email = alexander.j.robbins@gmail.com
+
+[alias]
+    ci = commit
+	st = status
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[core]
+	excludesfile = /home/alex/.gitignore
+[merge]
+    tool=gvimdiff
