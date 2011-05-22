@@ -20,4 +20,3 @@ let vimclojure#ParenRainbow=1           " Rainbow parentheses
 let vimclojure#WantNailgun=1            " Interactive mode with bonus features
 let vimclojure#DynamicHighlighting=1    " Highlight using symbols from active
                                         " namespaces
-let vimclojure#SplitPos = "left"        " Open new windows on the left
