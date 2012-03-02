@@ -12,6 +12,7 @@ set tags=~/prj/tags
 set wildmode=list:longest,full
 set wildmenu
 set cindent
+set cmdheight=2
 setlocal smarttab
 setlocal textwidth=80
 
