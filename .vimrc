@@ -31,3 +31,5 @@ let vimclojure#DynamicHighlighting=1    " Highlight using symbols from active
 
 " set current working dir to working dir of current buffer's file
 map ,d :cd %:h<CR>
+
+set clipboard=unnamed
