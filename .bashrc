@@ -18,3 +18,5 @@ set -o vi
 alias gvim="UBUNTU_MENUPROXY= gvim"
 
 export TERM="xterm-256color"
+
+export PS1="\[\033[G\]$PS1"
