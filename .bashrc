@@ -6,7 +6,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 source /main/scripts/env-common.sh
-PATH=./bin:./target/bin:~/bin:~/go/bin:~/intellij/bin:$PATH
+PATH=./bin:./script:./target/bin:~/bin:~/go/bin:$PATH
 
 alias ssh="ssh -X"
 alias mm="mm --local --notify"
@@ -17,6 +17,7 @@ set -o vi
 
 alias gvim="UBUNTU_MENUPROXY= gvim"
 
-export TERM="xterm-256color"
-
 export PS1="\[\033[G\]$PS1"
+
+PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
+source ~/.rvm/scripts/rvm
