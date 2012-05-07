@@ -21,3 +21,5 @@ export PS1="\[\033[G\]$PS1"
 
 PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
 source ~/.rvm/scripts/rvm
+
+alias tmux="TERM=screen-256color tmux"
