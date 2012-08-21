@@ -16,8 +16,6 @@ set cmdheight=2
 setlocal smarttab
 setlocal textwidth=80
 
-set backupdir=~/.vimbackup
-
 set wrap linebreak textwidth=0
 
 let g:netrw_list_hide = "\.pyc,\.swp,\.git"
