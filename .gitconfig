@@ -10,6 +10,6 @@
 	status = auto
 	branch = auto
 [core]
-	excludesfile = /home/alex/.gitignore
+	excludesfile = ~/.gitignore
 [merge]
     tool=gvimdiff
