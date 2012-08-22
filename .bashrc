@@ -11,6 +11,7 @@ alias ls="ls --color=auto"
 alias ll="ls -l"
 
 set -o vi
+export EDITOR=vim
 
 alias gvim="UBUNTU_MENUPROXY= gvim"
 
