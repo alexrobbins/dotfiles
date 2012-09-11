@@ -38,13 +38,13 @@
 
 ;; ; Dim parens - http://briancarper.net/blog/emacs-clojure-colors
 ;; (defclojureface clojure-parens       "DimGrey"   "Clojure parens")
-;; (defclojureface clojure-braces       "#49b2c7"   "Clojure braces")
-;; (defclojureface clojure-brackets     "SteelBlue" "Clojure brackets")
-;; (defclojureface clojure-keyword      "khaki"     "Clojure keywords")
-;; (defclojureface clojure-namespace    "#c476f1"   "Clojure namespace")
-;; (defclojureface clojure-java-call    "#4bcf68"   "Clojure Java calls")
-;; (defclojureface clojure-special      "#b8bb00"   "Clojure special")
-;; (defclojureface clojure-double-quote "#b8bb00"   "Clojure special" (:background "unspecified"))
+(defclojureface clojure-braces       "#49b2c7"   "Clojure braces")
+(defclojureface clojure-brackets     "SteelBlue" "Clojure brackets")
+(defclojureface clojure-keyword      "khaki"     "Clojure keywords")
+(defclojureface clojure-namespace    "#c476f1"   "Clojure namespace")
+(defclojureface clojure-java-call    "#4bcf68"   "Clojure Java calls")
+(defclojureface clojure-special      "#b8bb00"   "Clojure special")
+(defclojureface clojure-double-quote "#b8bb00"   "Clojure special" (:background "unspecified"))
 
 (defun tweak-clojure-syntax ()
   (mapcar (lambda (x) (font-lock-add-keywords nil x))
@@ -190,3 +190,5 @@ Leave one space or none, according to the context."
                       )
    (my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
    (my-move-key evil-motion-state-map evil-normal-state-map " ")
+
+(show-paren-mode)
