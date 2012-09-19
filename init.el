@@ -111,7 +111,7 @@ it to the beginning of the line."
                                                ?λ))))))
 
 ;; turn off scroll-bars
-(scroll-bar-mode -1)
+; (scroll-bar-mode -1)
 
 (defun squeeze-whitespace ()
   "Squeeze white space (including new lines) between objects around point.
