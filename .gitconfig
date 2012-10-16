@@ -3,8 +3,9 @@
 	email = alexander.j.robbins@gmail.com
 
 [alias]
-    ci = commit
+  ci = commit
 	st = status
+  tree = log --graph --decorate --pretty=oneline --abbrev-commit
 [color]
 	diff = auto
 	status = auto
