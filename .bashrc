@@ -19,3 +19,4 @@ export PS1="\[\033[G\]$PS1"
 
 alias tmux="TERM=screen-256color tmux"
 alias hdfs="hadoop fs"
+alias hdsf="hdfs"
