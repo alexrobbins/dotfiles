@@ -14,6 +14,11 @@
 (dolist (f (file-expand-wildcards "~/.emacs.d/*"))
   (add-to-list 'load-path f))
 
+(require 'package)
+(add-to-list 'package-archives
+                          '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
 ;; load color-theme
 (require 'color-theme)
 (color-theme-initialize)
@@ -21,9 +26,6 @@
 (color-theme-euphoria)
 
 (add-to-list 'default-frame-alist '(alpha 85 75))
-
-;; load clojure mode
-(require 'clojure-mode)
 
 ;; rainbow parentheses
 (require 'highlight-parentheses)
@@ -36,8 +38,6 @@
 (defmacro defclojureface (name color desc &optional others)
   `(defface ,name '((((class color)) (:foreground ,color ,@others))) ,desc :group 'faces))
 
-;; ; Dim parens - http://briancarper.net/blog/emacs-clojure-colors
-;; (defclojureface clojure-parens       "DimGrey"   "Clojure parens")
 (defclojureface clojure-braces       "#49b2c7"   "Clojure braces")
 (defclojureface clojure-brackets     "SteelBlue" "Clojure brackets")
 (defclojureface clojure-keyword      "khaki"     "Clojure keywords")
@@ -57,6 +57,19 @@
             (("(\\(\\.[^ \n)]*\\|[^ \n)]+\\.\\|new\\)\\([ )\n]\\|$\\)" 1 'clojure-java-call)))))
 
 (add-hook 'clojure-mode-hook 'tweak-clojure-syntax)
+(add-hook 'clojure-mode-hook 'paredit-mode)
+
+(setq nrepl-popup-stacktraces nil)
+;;(add-to-list 'same-window-buffer-names "*nrepl*") 
+(add-hook 'nrepl-mode-hook 'paredit-mode)
+
+;; Needed to define ctrl arrow keys from terminal.app
+(define-key input-decode-map "\e[5C" [C-right])
+(define-key input-decode-map "\e[5D" [C-left])
+(define-key input-decode-map "\e[8C" [C-M-right])
+(define-key input-decode-map "\e[8D" [C-M-left])
+
+(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
 
 ;;macros
 (global-set-key (kbd "C-,")        'kmacro-start-macro-or-insert-counter)
@@ -111,7 +124,7 @@ it to the beginning of the line."
                                                ?λ))))))
 
 ;; turn off scroll-bars
-; (scroll-bar-mode -1)
+(scroll-bar-mode -1)
 
 (defun squeeze-whitespace ()
   "Squeeze white space (including new lines) between objects around point.
@@ -171,9 +184,6 @@ Leave one space or none, according to the context."
       (while (and (> (point) begin)
                   (re-search-backward regex nil t))
         (replace-match "" t t)))))
-
-(define-clojure-indent
-  (let? 1))
 
 (setq font-lock-verbose nil)
 
