@@ -23,7 +23,7 @@ let g:netrw_list_hide = "\.pyc,\.swp,\.git"
 " Settings for VimClojure
 let vimclojure#HighlightBuiltins=1      " Highlight Clojure's builtins
 let vimclojure#ParenRainbow=1           " Rainbow parentheses
-let vimclojure#WantNailgun=1            " Interactive mode with bonus features
+" let vimclojure#WantNailgun=1            " Interactive mode with bonus features
 let vimclojure#DynamicHighlighting=1    " Highlight using symbols from active
                                         " namespaces
 
