@@ -15,8 +15,10 @@
   (add-to-list 'load-path f))
 
 (require 'package)
+;; (add-to-list 'package-archives
+;;                           '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
-                          '("marmalade" . "http://marmalade-repo.org/packages/"))
+              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
 ;; load color-theme
@@ -60,7 +62,7 @@
 (add-hook 'clojure-mode-hook 'paredit-mode)
 
 (setq nrepl-popup-stacktraces nil)
-;;(add-to-list 'same-window-buffer-names "*nrepl*") 
+;;(add-to-list 'same-window-buffer-names "*nrepl*")
 (add-hook 'nrepl-mode-hook 'paredit-mode)
 
 ;; Needed to define ctrl arrow keys from terminal.app
