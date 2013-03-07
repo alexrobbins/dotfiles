@@ -24,3 +24,5 @@ alias tmux="TERM=screen-256color tmux"
 alias hdfs="hadoop fs"
 alias hdsf="hdfs"
 alias r="R"
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
