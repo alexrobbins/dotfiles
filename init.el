@@ -15,10 +15,8 @@
   (add-to-list 'load-path f))
 
 (require 'package)
-;; (add-to-list 'package-archives
-;;                           '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
-              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+                          '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 ;; load color-theme
@@ -73,34 +71,11 @@
 
 (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
 
-;;macros
-(global-set-key (kbd "C-,")        'kmacro-start-macro-or-insert-counter)
-(global-set-key (kbd "C-.")        'kmacro-end-or-call-macro)
-(global-set-key (kbd "<C-return>") 'apply-macro-to-region-lines)
-
 (add-hook 'before-save-hook 'whitespace-cleanup)
-
-(setq frame-title-format '("%f"))
-
-(defun smart-line-beginning ()
-  "Move point to the beginning of text
-on the current line; if that is already
-the current position of point, then move
-it to the beginning of the line."
-  (interactive)
-  (let ((pt (point)))
-    (beginning-of-line-text)
-    (when (eq pt (point))
-      (beginning-of-line))))
-
-(global-set-key "\C-a" 'smart-line-beginning)
 
 (setq make-backup-files nil)
 
 (put 'scroll-left 'disabled nil)
-
-(global-set-key (kbd "C-c c") 'toggle-truncate-lines)
-(global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -125,69 +100,8 @@ it to the beginning of the line."
                                                (match-end 1)
                                                ?λ))))))
 
-;; turn off scroll-bars
-(scroll-bar-mode -1)
-
-(defun squeeze-whitespace ()
-  "Squeeze white space (including new lines) between objects around point.
-Leave one space or none, according to the context."
-  (interactive "*")
-  (skip-chars-backward " \t\r\n\f")
-  (set-mark (point))
-  (skip-chars-forward " \t\r\n\f")
-  (kill-region (point) (mark))
-  (insert ?\s)
-  (fixup-whitespace))
-
-(defun insert-line-numbers (beg end &optional start-line)
-  "Insert line numbers into buffer."
-  (interactive "r")
-  (save-excursion
-    (let ((max (count-lines beg end))
-          (line (or start-line 1))
-          (counter 1))
-      (goto-char beg)
-      (while (<= counter max)
-        (insert (format "%0d	" line))
-        (beginning-of-line 2)
-        (incf line)
-        (incf counter)))))
-
-(defun insert-line-numbers+ ()
-  "Insert line numbers into buffer."
-  (interactive)
-  (if mark-active
-      (insert-line-numbers (region-beginning) (region-end) (read-number "Start line: "))
-    (insert-line-numbers (point-min) (point-max))))
-
-(defun strip-blank-lines ()
-  "Strip blank lines in region.
-   If no region strip all blank lines in current buffer."
-  (interactive)
-  (strip-regular-expression-string "^[ \t]*\n"))
-
-(defun strip-line-numbers ()
-  "Strip line numbers in region.
-   If no region strip all the line numbers in current buffer."
-  (interactive)
-  (strip-regular-expression-string "^[0-9]+[ \t]?"))
-
-(defun strip-regular-expression-string (regex)
-  "Strip all strings that match regex in region.
-   If no region strip current buffer."
-  (interactive)
-  (let ((begin (point-min))
-        (end (point-max)))
-    (if mark-active
-        (setq begin (region-beginning)
-              end (region-end)))
-    (save-excursion
-      (goto-char end)
-      (while (and (> (point) begin)
-                  (re-search-backward regex nil t))
-        (replace-match "" t t)))))
-
-(setq font-lock-verbose nil)
+; ;; turn off scroll-bars
+; (scroll-bar-mode -1)
 
 ;; show column numbers
 (setq column-number-mode t)
@@ -196,11 +110,15 @@ Leave one space or none, according to the context."
 (require 'evil)
 (evil-mode 1)
 (defun my-move-key (keymap-from keymap-to key)
-       "Moves key binding from one keymap to another, deleting from the old location. "
-            (define-key keymap-to key (lookup-key keymap-from key))
-                 (define-key keymap-from key nil)
-                      )
-   (my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
-   (my-move-key evil-motion-state-map evil-normal-state-map " ")
+  "Moves key binding from one keymap to another, deleting from the old location. "
+  (define-key keymap-to key (lookup-key keymap-from key))
+  (define-key keymap-from key nil)
+  )
+(my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
+(my-move-key evil-motion-state-map evil-normal-state-map " ")
+(define-key evil-motion-state-map (kbd "TAB") nil) ; So tab works in org mode
+(define-key evil-normal-state-map (kbd "TAB") nil) ; So tab works in org mode
 
 (show-paren-mode)
+
+(require 'nrepl)
