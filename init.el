@@ -44,12 +44,11 @@
 (defclojureface clojure-namespace    "#c476f1"   "Clojure namespace")
 (defclojureface clojure-java-call    "#4bcf68"   "Clojure Java calls")
 (defclojureface clojure-special      "#b8bb00"   "Clojure special")
-(defclojureface clojure-double-quote "#b8bb00"   "Clojure special" (:background "unspecified"))
+(defclojureface clojure-double-quote "#b8bb00"   "Clojure special")
 
 (defun tweak-clojure-syntax ()
   (mapcar (lambda (x) (font-lock-add-keywords nil x))
-          '((("#?['`]*(\\|)"       . 'clojure-parens))
-            (("#?\\^?{\\|}"        . 'clojure-brackets))
+          '((("#?\\^?{\\|}"        . 'clojure-brackets))
             (("\\[\\|\\]"          . 'clojure-braces))
             ((":\\w+"              . 'clojure-keyword))
             (("#?\""               0 'clojure-double-quote prepend))
@@ -118,6 +117,7 @@
 (my-move-key evil-motion-state-map evil-normal-state-map " ")
 (define-key evil-motion-state-map (kbd "TAB") nil) ; So tab works in org mode
 (define-key evil-normal-state-map (kbd "TAB") nil) ; So tab works in org mode
+(define-key evil-normal-state-map (kbd "M-.") nil)
 
 (show-paren-mode)
 
