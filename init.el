@@ -17,6 +17,9 @@
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
+(setq org-startup-folded "content")
+(setq org-startup-indented "indent")
+
 ;; load color-theme
 (require 'color-theme)
 (color-theme-initialize)
@@ -30,8 +33,10 @@
 ;; Needed to define ctrl arrow keys from terminal.app
 (define-key input-decode-map "\e[5C" [C-right])
 (define-key input-decode-map "\e[5D" [C-left])
-(define-key input-decode-map "\e[8C" [C-M-right])
-(define-key input-decode-map "\e[8D" [C-M-left])
+(define-key input-decode-map "\e[3C" [C-M-right])
+(define-key input-decode-map "\e[3D" [C-M-left])
+(define-key input-decode-map "\e[8C" [M-right])
+(define-key input-decode-map "\e[8D" [M-left])
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
