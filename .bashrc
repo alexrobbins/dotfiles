@@ -26,3 +26,4 @@ alias hdsf="hdfs"
 alias r="R"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+setxkbmap -option caps:escape

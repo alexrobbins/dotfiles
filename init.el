@@ -26,9 +26,6 @@
 (setq org-hide-leading-stars t)
 (define-key global-map "\C-cl" 'org-store-link)
 
-(color-theme-initialize)
-(color-theme-solarized)
-
 (add-to-list 'default-frame-alist '(alpha 85 75))
 
 ;; Needed to define ctrl arrow keys from terminal.app
@@ -85,7 +82,7 @@
 (setq sp-highlight-pair-overlay nil)
 (setq sp-highlight-wrap-tag-overlay nil)
 
- 
+
 (add-hook 'prog-mode-hook #'which-key-mode)
 (add-hook 'prog-mode-hook #'smartparens-strict-mode)
 
@@ -102,12 +99,16 @@
                             (setq c-basic-offset 2
                                   tab-width 2
                                   indent-tabs-mode nil)))
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
+(load-theme 'solarized t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
+ '(frame-background-mode (quote dark))
+ '(package-selected-packages
    (quote
-    ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" default)))
- '(frame-background-mode (quote dark)))
+    (rainbow-delimiters which-key smartparens evil company cider aggressive-indent))))
